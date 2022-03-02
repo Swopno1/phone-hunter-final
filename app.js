@@ -22,8 +22,8 @@ const updateUI = (data) => {
     const phones = data.data;
     phones.forEach((phone) => {
       const template = `
-                <div class="card mx-auto p-1 my-2" style="width: 18rem">
-                  <img src="${phone.image}" class="card-img-top" alt="" />
+                <div class="card mx-auto p-1 my-4 shadow-lg" style="width: 18rem">
+                  <img src="${phone.image}" class="card-img-top p-3" alt="" />
                   <div class="card-body">
                     <h5 class="card-title">${phone.phone_name}</h5>
                     <p class="card-text">${phone.brand}</p>
