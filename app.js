@@ -31,6 +31,7 @@ const updateUI = (data) => {
       addToDomTarget(template, "show-result");
     });
   } else {
+    showError("No result foun!", "messagebox");
     console.log(data);
   }
 };
@@ -61,6 +62,12 @@ const addToDomTarget = (item, targetId) => {
   element.innerHTML = item;
 
   container.appendChild(element);
+};
+
+// Show Error Message
+const showError = (message, containerID) => {
+  const container = document.getElementById(containerID);
+  container.innerText = message;
 };
 
 // Phone Search
