@@ -18,31 +18,32 @@
   </head>
   <body>
     <div class="container">
-      <div id="search-area" class="">
-        <h1 class="main-header">Smartphone Finder</h1>
-        <div class="input-group mb-3">
+      <div id="search-area" class="w-50 mx-auto my-3">
+        <h1 class="main-header text-center my-3 py-3">Smartphone Finder</h1>
+        <div class="input-group mb-3 py-3">
           <span class="input-group-text" id="basic-addon1">@</span>
           <input
+            id="search-box"
             type="text"
             class="form-control"
-            placeholder="Username"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
+            placeholder="Search A Smartphone"
+            aria-label="Search A Smartphone"
+            aria-describedby="Searchbox to search A Smartphone"
           />
         </div>
         <div class="input-group mb-3">
           <button
             onclick="btnClickHandler()"
             type="button"
-            class="btn btn-outline-success"
+            class="btn btn-outline-success text-center mx-auto fs-3 w-25 py-1"
           >
-            Success
+            Search
           </button>
         </div>
       </div>
       <div class="messagebox"></div>
       <div id="result-area">
-        <div class="container">
+        <div class="mt-5">
           <div class="row">
             <div class="col">
               <div class="card" style="width: 18rem">

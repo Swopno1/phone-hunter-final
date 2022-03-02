@@ -1,5 +1,7 @@
 const btnClickHandler = () => {
-  console.log("Btn Clicked!");
+  const input = document.getElementById("search-box");
+  const inputValue = input.value;
+  console.log(inputValue);
 };
 
 // Phone Search
