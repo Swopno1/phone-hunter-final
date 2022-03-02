@@ -18,7 +18,36 @@ const getSearchResult = (url) => {
 
 // Update UI with the API Response
 const updateUI = (data) => {
-  console.log(data);
+  if (data.status) {
+    const phones = data.data;
+    phones.forEach((phone) => {
+      const template = `
+                <div class="card mx-auto p-1 my-2" style="width: 18rem">
+                  <img src="${phone.image}" class="card-img-top" alt="" />
+                  <div class="card-body">
+                    <h5 class="card-title">${phone.phone_name}</h5>
+                    <p class="card-text">${phone.brand}</p>
+                    <a href="#" class="btn btn-primary">Details...</a>
+                  </div>
+                </div>
+      `;
+      addToDomTarget(template, "show-result");
+      console.log(phone);
+    });
+  } else {
+    console.log(data);
+  }
+};
+
+// Function to add item in the tergeted DOM
+const addToDomTarget = (item, targetId) => {
+  const container = document.getElementById(targetId);
+  const element = document.createElement("div");
+  element.classList.add("col");
+  element.innerHTML = item;
+
+  container.appendChild(element);
+  console.log(item);
 };
 
 // Phone Search
