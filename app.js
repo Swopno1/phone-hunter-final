@@ -2,12 +2,17 @@
 const btnClickHandler = async () => {
   const input = document.getElementById("search-box");
   const inputValue = input.value.toLowerCase();
-  // Send url to API request
-  const url = `https://openapi.programming-hero.com/api/phones?search=${inputValue}`;
-  const result = await getSearchResult(url);
 
-  // Add the search result in the UI
-  updateUI(result);
+  if (inputValue !== "") {
+    // Send url to API request
+    const url = `https://openapi.programming-hero.com/api/phones?search=${inputValue}`;
+    const result = await getApiResult(url);
+
+    // Add the search result in the UI
+    updateUI(result);
+  } else {
+    showError("Please enter a value", "messagebox");
+  }
 
   // Clear input field
   input.value = "";
@@ -40,12 +45,26 @@ const updateUI = (data) => {
 const showProductDetails = async (productId) => {
   // Send Url to API request
   const url = `https://openapi.programming-hero.com/api/phone/${productId}`;
-  const result = await getSearchResult(url);
+  const result = await getApiResult(url);
+  if (result.status) {
+    const template = `
+        <div class="card mx-auto p-1 my-4 shadow-lg" style="width: 18rem">
+            <img src="${result.data.image}" class="card-img-top p-3" alt="" />
+            <div class="card-body">
+            <h5 class="card-title">${result.data.name}</h5>
+            <p class="card-text">${result.data.releaseDate}</p>
+            </div>
+        </div>
+    `;
+    showDetails(template);
+  } else {
+    showError("");
+  }
   console.log(result);
 };
 
 // Send API request
-const getSearchResult = (url) => {
+const getApiResult = (url) => {
   const result = fetch(url)
     .then((res) => res.json())
     .then((data) => data)
@@ -62,6 +81,13 @@ const addToDomTarget = (item, targetId) => {
   element.innerHTML = item;
 
   container.appendChild(element);
+};
+
+// Show data in a modal
+const showDetails = (template) => {
+  const container = document.getElementById("details-box");
+  container.innerHTML = template;
+  console.log(template);
 };
 
 // Show Error Message
